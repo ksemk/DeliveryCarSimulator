@@ -35,10 +35,14 @@ maintance_policy = read_file(file_name)
 transition_intencity01 = int(maintance_policy[0])    #time range to go from D0 to D1
 transition_intencity12 = int(maintance_policy[1])    #time range to go from D1 to D2
 transition_intencity23 = int(maintance_policy[2])    #time range to go from D2 to F
+transition_intencityF = int(maintance_policy[9])
 decision_probability1 = int(maintance_policy[3])
 decision_probability2 = int(maintance_policy[4])
-maintance_range1 = int(maintance_policy[5])          #maintance range for state D1
-maintance_range2 = int(maintance_policy[6])          #maintance range for state D2
+maintance_range1 = int(maintance_policy[5])          #maintance time range for state D1
+maintance_range2 = int(maintance_policy[6])          #maintance time range for state D2
+inspection_range1 = int(maintance_policy[7])
+inspection_range2 = int(maintance_policy[8])
+
 
 def inspection(state):
     if state == STATE_D1:
@@ -71,49 +75,69 @@ def maintenance(state):
 
 # Main loop function
 def mainLoop():
-    simulation_time = 0
     time_in_use = 0
     time_unused = 0
+    time_overhaul = 0
+    time_of_simulation = 0
+
+
     state = INITIAL_STATE
-    while state != FAILURE:
+    i = int(input())
+    while time_of_simulation < i:
         if state == INITIAL_STATE:
             print("\nThe car is in the initial state.")
-            time1t =random.randint(0, transition_intencity01)
-            simulation_time += time1t
+            time1t = random.randint(0, transition_intencity01)
             time_in_use += time1t
             state = STATE_D1
+            time_of_simulation += time1t
         elif state == STATE_D1:
             print("\nThe car is in state D1.")
-            time2t = random.randint(0, transition_intencity12)
-            simulation_time += time2t
-            time_in_use += time2t
+            time1i = random.randint(0, inspection_range1)
             if inspection(state) == True:
                 state = maintenance(state)
                 time1m = random.randint(0, maintance_range1)
-                simulation_time += time1m
-                time_unused += time1m
+                time_unused += time1m + time1i
+                time_of_simulation += time1m + time1i
             else:
                 state = STATE_D2
+                time2t = random.randint(0, transition_intencity12)
+                time_of_simulation += time2t + time1i
+                time_unused += time1i
+                time_in_use += time2t
         elif state == STATE_D2:
             print("\nThe car is in state D2.")
-            time3 = random.randint(0, transition_intencity23)
-            simulation_time += time3
-            time_in_use += time3
+            time2i = random.randint(0, inspection_range1)
             if inspection(state) == True:
                 state = maintenance(state)
                 time2m = random.randint(0, maintance_range2)
-                simulation_time += time2m
-                time_unused += time2m
+                time_unused += time2m + time2i
+                time_of_simulation += time2i + time2m
             else:
+                time3t = random.randint(0, transition_intencity23)
+                time_unused += time2i
+                time_of_simulation += time2i + time3t
+                time_in_use += time3t
                 state = FAILURE
+        elif state == FAILURE:
+            print("\nThe car is broken")
+            timeF = random.randint(10, transition_intencityF)
+            time_overhaul += timeF
+            time_of_simulation += timeF
+            state = INITIAL_STATE
 
     # Print the simulation time and time in use
     print(f"\nSimulation finished.")
-    print(f"Simulation time: {simulation_time}")
+    print(f"Simulation time: {time_of_simulation}")
     print(f"Time in use: {time_in_use}")
     print(f"Time unused: {time_unused}")
+    print(f"Overhaul time: {time_overhaul}")
 
 
 
 # Call the main loop function
 mainLoop()
+
+
+# DATA frames, csv
+# seaborn py
+# overhaul
