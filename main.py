@@ -35,13 +35,13 @@ maintance_policy = read_file(file_name)
 transition_intencity01 = int(maintance_policy[0])    #time range to go from D0 to D1
 transition_intencity12 = int(maintance_policy[1])    #time range to go from D1 to D2
 transition_intencity23 = int(maintance_policy[2])    #time range to go from D2 to F
-transition_intencityF = int(maintance_policy[9])
-decision_probability1 = int(maintance_policy[3])
-decision_probability2 = int(maintance_policy[4])
-maintance_range1 = int(maintance_policy[5])          #maintance time range for state D1
-maintance_range2 = int(maintance_policy[6])          #maintance time range for state D2
-inspection_range1 = int(maintance_policy[7])
-inspection_range2 = int(maintance_policy[8])
+transition_intencityF = int(maintance_policy[3])     #time range to go from F to D0
+decision_probability1 = int(maintance_policy[4])
+decision_probability2 = int(maintance_policy[5])
+maintance_range1 = int(maintance_policy[6])          #maintance time range for state D1
+maintance_range2 = int(maintance_policy[7])          #maintance time range for state D2
+inspection_range1 = int(maintance_policy[8])
+inspection_range2 = int(maintance_policy[9])
 
 
 def inspection(state):
@@ -67,7 +67,7 @@ def maintenance(state):
 
         return INITIAL_STATE
     elif state == STATE_D2:
-        time2 = random.randint(0, maintance_range2)
+        #time2 = random.randint(0, maintance_range2)
         print("The car is in state D2 and needs maintenance.")
         return STATE_D1
 
@@ -82,6 +82,7 @@ def mainLoop():
 
 
     state = INITIAL_STATE
+    print("Enter time:")
     i = int(input())
     while time_of_simulation < i:
         if state == INITIAL_STATE:
@@ -120,17 +121,20 @@ def mainLoop():
                 state = FAILURE
         elif state == FAILURE:
             print("\nThe car is broken")
-            timeF = random.randint(10, transition_intencityF)
+            timeF = random.randint(1, transition_intencityF)
             time_overhaul += timeF
             time_of_simulation += timeF
             state = INITIAL_STATE
 
     # Print the simulation time and time in use
+    time_in_use_persentage = (time_in_use * 100) / time_of_simulation
+    time_unused_persentage = (time_unused * 100) / time_of_simulation
+    time_overhaul_persentage = (time_overhaul * 100) / time_of_simulation
     print(f"\nSimulation finished.")
     print(f"Simulation time: {time_of_simulation}")
-    print(f"Time in use: {time_in_use}")
-    print(f"Time unused: {time_unused}")
-    print(f"Overhaul time: {time_overhaul}")
+    print(f"Time in use: {time_in_use} ({round(time_in_use_persentage,1)}%)")
+    print(f"Time unused: {time_unused} ({round(time_unused_persentage,1)}%)")
+    print(f"Overhaul time: {time_overhaul} ({round(time_overhaul_persentage,1)}%)")
 
 
 
