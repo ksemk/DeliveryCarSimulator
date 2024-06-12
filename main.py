@@ -10,6 +10,13 @@ STATE_D1 = "D1"
 STATE_D2 = "D2"
 FAILURE = "F"
 
+# Defining costs of maintenance and inspection
+MAINTENANCE_COST_D1 = 100
+MAINTENANCE_COST_D2 = 200
+INSPECTION_COST_D1 = 20
+INSPECTION_COST_D2 = 50
+FAILURE_COST = 500
+
 # Defining variables
 file_name = 'config.txt'
 #maintance_probability_d1 = 0.9
@@ -79,6 +86,7 @@ def mainLoop():
     time_unused = 0
     time_overhaul = 0
     time_of_simulation = 0
+    costs = 0
 
 
     state = INITIAL_STATE
@@ -93,37 +101,45 @@ def mainLoop():
             time_of_simulation += time1t
         elif state == STATE_D1:
             print("\nThe car is in state D1.")
+            # Inspection in state D1
             time1i = random.randint(0, inspection_range1)
             if inspection(state) == True:
                 state = maintenance(state)
                 time1m = random.randint(0, maintance_range1)
                 time_unused += time1m + time1i
                 time_of_simulation += time1m + time1i
+                costs += MAINTENANCE_COST_D1 * time1m + INSPECTION_COST_D1 * time1i
             else:
                 state = STATE_D2
                 time2t = random.randint(0, transition_intencity12)
                 time_of_simulation += time2t + time1i
                 time_unused += time1i
                 time_in_use += time2t
+                costs += INSPECTION_COST_D1 * time1i
         elif state == STATE_D2:
             print("\nThe car is in state D2.")
+
+            # Inspection in state D2
             time2i = random.randint(0, inspection_range1)
             if inspection(state) == True:
                 state = maintenance(state)
                 time2m = random.randint(0, maintance_range2)
                 time_unused += time2m + time2i
                 time_of_simulation += time2i + time2m
+                costs += MAINTENANCE_COST_D2 * time2m + INSPECTION_COST_D2 * time2i
             else:
                 time3t = random.randint(0, transition_intencity23)
                 time_unused += time2i
                 time_of_simulation += time2i + time3t
                 time_in_use += time3t
+                costs += INSPECTION_COST_D2 * time2i
                 state = FAILURE
         elif state == FAILURE:
             print("\nThe car is broken")
             timeF = random.randint(1, transition_intencityF)
             time_overhaul += timeF
             time_of_simulation += timeF
+            costs += FAILURE_COST
             state = INITIAL_STATE
 
     # Print the simulation time and time in use
@@ -135,6 +151,7 @@ def mainLoop():
     print(f"Time in use: {time_in_use} ({round(time_in_use_persentage,1)}%)")
     print(f"Time unused: {time_unused} ({round(time_unused_persentage,1)}%)")
     print(f"Overhaul time: {time_overhaul} ({round(time_overhaul_persentage,1)}%)")
+    print(f"Costs: {costs}")
 
 
 
