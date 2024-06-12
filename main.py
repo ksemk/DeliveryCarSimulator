@@ -4,7 +4,7 @@ from car import Car
 # Introduction
 print("Welcome to Delivery Car Simulation")
 
-# Defining constans
+# Defining constants
 INITIAL_STATE = "D0"
 STATE_D1 = "D1"
 STATE_D2 = "D2"
@@ -17,6 +17,12 @@ INSPECTION_COST_D1 = 20
 INSPECTION_COST_D2 = 50
 FAILURE_COST = 500
 
+# Reading the maintenance policy from the config file
+transition_intencity01 = 6    #time range to go from D0 to D1
+transition_intencity12 = 3    #time range to go from D1 to D2
+transition_intencity23 = 2   #time range to go from D2 to F
+transition_intencityF = 1     #time range to go from F to D0
+
 # Defining variables for total values
 total_time_in_use = 0
 total_time_unused = 0
@@ -27,14 +33,9 @@ total_initial_state_counter = 0
 total_d1_state_counter = 0
 total_d2_state_counter = 0
 
-# Defining variables
+# File operations
 file_name = 'config.txt'
-#maintance_probability_d1 = 0.9
-#maintance_probability_d2 = 0.95
 
-
-
-#Reading from file
 def read_file(file_name):
     maintance_policy = []
     try:
@@ -43,56 +44,35 @@ def read_file(file_name):
                 maintance_policy.append(line.strip())
     except FileNotFoundError:
         print(f"File '{file_name}' doesn't exist")
-
     return maintance_policy
 
 maintance_policy = read_file(file_name)
 
 #Parameters
-transition_intencity01 = int(maintance_policy[0])    #time range to go from D0 to D1
-transition_intencity12 = int(maintance_policy[1])    #time range to go from D1 to D2
-transition_intencity23 = int(maintance_policy[2])    #time range to go from D2 to F
-transition_intencityF = int(maintance_policy[3])     #time range to go from F to D0
-decision_probability1 = int(maintance_policy[4])
-decision_probability2 = int(maintance_policy[5])
-maintance_range1 = int(maintance_policy[6])          #maintance time range for state D1
-maintance_range2 = int(maintance_policy[7])          #maintance time range for state D2
-inspection_range1 = int(maintance_policy[8])
-inspection_range2 = int(maintance_policy[9])
 
+decision_probability1 = int(maintance_policy[0])
+decision_probability2 = int(maintance_policy[1])
+maintance_range1 = int(maintance_policy[2])          #maintenance time range for state D1
+maintance_range2 = int(maintance_policy[3])          #maintenance time range for state D2
+inspection_range1 = int(maintance_policy[4])
+inspection_range2 = int(maintance_policy[5])
 
 def inspection(state):
     if state == STATE_D1:
         print("Car inspection 1")
-        random_number = random.randint(0, 100)
-        if random_number <= decision_probability1:
-            return True
-        else:
-            return False
-    if state == STATE_D2:
+        return random.randint(0, 100) <= decision_probability1
+    elif state == STATE_D2:
         print("Car inspection 2")
-        random_number = random.randint(0, 100)
-        if random_number <= decision_probability2:
-            return True
-        else:
-            return False
+        return random.randint(0, 100) <= decision_probability2
 
-# Defining functions
 def maintenance(state):
     if state == STATE_D1:
         print("The car is in state D1 and needs maintenance.")
-
         return INITIAL_STATE
     elif state == STATE_D2:
-        #time2 = random.randint(0, maintance_range2)
         print("The car is in state D2 and needs maintenance.")
         return STATE_D1
 
-
-
-
-
-# Main loop function
 def mainLoop(i):
     global total_time_in_use, total_time_unused, total_time_overhaul, total_costs
     global total_failure_counter, total_initial_state_counter, total_d1_state_counter, total_d2_state_counter
@@ -106,23 +86,20 @@ def mainLoop(i):
     d1_state_counter = 0
     d2_state_counter = 0
 
-
     state = INITIAL_STATE
-    a = i
-    while time_of_simulation < a:
+    while time_of_simulation < i:
         if state == INITIAL_STATE:
             initial_state_counter += 1
             print("\nThe car is in the initial state.")
             time1t = random.randint(0, transition_intencity01)
             time_in_use += time1t
-            state = STATE_D1
             time_of_simulation += time1t
+            state = STATE_D1
         elif state == STATE_D1:
             d1_state_counter += 1
             print("\nThe car is in state D1.")
-            # Inspection in state D1
             time1i = random.randint(0, inspection_range1)
-            if inspection(state) == True:
+            if inspection(state):
                 state = maintenance(state)
                 time1m = random.randint(0, maintance_range1)
                 time_unused += time1m + time1i
@@ -138,10 +115,8 @@ def mainLoop(i):
         elif state == STATE_D2:
             d2_state_counter += 1
             print("\nThe car is in state D2.")
-
-            # Inspection in state D2
-            time2i = random.randint(0, inspection_range1)
-            if inspection(state) == True:
+            time2i = random.randint(0, inspection_range2)
+            if inspection(state):
                 state = maintenance(state)
                 time2m = random.randint(0, maintance_range2)
                 time_unused += time2m + time2i
@@ -163,11 +138,6 @@ def mainLoop(i):
             costs += FAILURE_COST
             state = INITIAL_STATE
 
-    # Print the simulation time and time in use
-    time_in_use_persentage = (time_in_use * 100) / time_of_simulation
-    time_unused_persentage = (time_unused * 100) / time_of_simulation
-    time_overhaul_persentage = (time_overhaul * 100) / time_of_simulation
-
     total_time_in_use += time_in_use
     total_time_unused += time_unused
     total_time_overhaul += time_overhaul
@@ -177,18 +147,21 @@ def mainLoop(i):
     total_d1_state_counter += d1_state_counter
     total_d2_state_counter += d2_state_counter
 
+    # Print the simulation time and time in use
+    time_in_use_persentage = (time_in_use * 100) / time_of_simulation
+    time_unused_persentage = (time_unused * 100) / time_of_simulation
+    time_overhaul_persentage = (time_overhaul * 100) / time_of_simulation
+
     print(f"\nSimulation finished.")
     print(f"Simulation time: {time_of_simulation}")
-    print(f"Time in use: {time_in_use} ({round(time_in_use_persentage,1)}%)")
-    print(f"Time unused: {time_unused} ({round(time_unused_persentage,1)}%)")
-    print(f"Overhaul time: {time_overhaul} ({round(time_overhaul_persentage,1)}%)")
+    print(f"Time in use: {time_in_use} ({round(time_in_use_persentage, 1)}%)")
+    print(f"Time unused: {time_unused} ({round(time_unused_persentage, 1)}%)")
+    print(f"Overhaul time: {time_overhaul} ({round(time_overhaul_persentage, 1)}%)")
     print(f"Costs: {costs}")
     print(f"Number of failures: {failure_counter}")
     print(f"Number of initial states: {initial_state_counter}")
     print(f"Number of D1 states: {d1_state_counter}")
     print(f"Number of D2 states: {d2_state_counter}")
-
-
 
 # Call the main loop function
 sim_num = int(input("Enter the number of simulations: "))
@@ -196,6 +169,9 @@ i = int(input("Enter time:"))
 
 for x in range(sim_num):
     mainLoop(i)
+
+average_time_in_use = total_time_in_use / sim_num
+average_costs = total_costs / sim_num
 
 print("\nAvarage results: ")
 print(f"Time in use: {total_time_in_use/sim_num}")
@@ -207,7 +183,6 @@ print(f"Number of initial states: {total_initial_state_counter/sim_num}")
 print(f"Number of D1 states: {total_d1_state_counter/sim_num}")
 print(f"Number of D2 states: {total_d2_state_counter/sim_num}")
 
-
-# DATA frames, csv
-# seaborn py
-# overhaul
+# Writing the results to a CSV file
+with open("policy1_results.csv", "a") as file:
+    file.write(f"{average_time_in_use}, {average_costs}\n")
