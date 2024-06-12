@@ -17,6 +17,16 @@ INSPECTION_COST_D1 = 20
 INSPECTION_COST_D2 = 50
 FAILURE_COST = 500
 
+# Defining variables for total values
+total_time_in_use = 0
+total_time_unused = 0
+total_time_overhaul = 0
+total_costs = 0
+total_failure_counter = 0
+total_initial_state_counter = 0
+total_d1_state_counter = 0
+total_d2_state_counter = 0
+
 # Defining variables
 file_name = 'config.txt'
 #maintance_probability_d1 = 0.9
@@ -80,26 +90,35 @@ def maintenance(state):
 
 
 
+
+
 # Main loop function
-def mainLoop():
+def mainLoop(i):
+    global total_time_in_use, total_time_unused, total_time_overhaul, total_costs
+    global total_failure_counter, total_initial_state_counter, total_d1_state_counter, total_d2_state_counter
     time_in_use = 0
     time_unused = 0
     time_overhaul = 0
     time_of_simulation = 0
     costs = 0
+    failure_counter = 0
+    initial_state_counter = 0
+    d1_state_counter = 0
+    d2_state_counter = 0
 
 
     state = INITIAL_STATE
-    print("Enter time:")
-    i = int(input())
-    while time_of_simulation < i:
+    a = i
+    while time_of_simulation < a:
         if state == INITIAL_STATE:
+            initial_state_counter += 1
             print("\nThe car is in the initial state.")
             time1t = random.randint(0, transition_intencity01)
             time_in_use += time1t
             state = STATE_D1
             time_of_simulation += time1t
         elif state == STATE_D1:
+            d1_state_counter += 1
             print("\nThe car is in state D1.")
             # Inspection in state D1
             time1i = random.randint(0, inspection_range1)
@@ -117,6 +136,7 @@ def mainLoop():
                 time_in_use += time2t
                 costs += INSPECTION_COST_D1 * time1i
         elif state == STATE_D2:
+            d2_state_counter += 1
             print("\nThe car is in state D2.")
 
             # Inspection in state D2
@@ -135,6 +155,7 @@ def mainLoop():
                 costs += INSPECTION_COST_D2 * time2i
                 state = FAILURE
         elif state == FAILURE:
+            failure_counter += 1
             print("\nThe car is broken")
             timeF = random.randint(1, transition_intencityF)
             time_overhaul += timeF
@@ -146,17 +167,45 @@ def mainLoop():
     time_in_use_persentage = (time_in_use * 100) / time_of_simulation
     time_unused_persentage = (time_unused * 100) / time_of_simulation
     time_overhaul_persentage = (time_overhaul * 100) / time_of_simulation
+
+    total_time_in_use += time_in_use
+    total_time_unused += time_unused
+    total_time_overhaul += time_overhaul
+    total_costs += costs
+    total_failure_counter += failure_counter
+    total_initial_state_counter += initial_state_counter
+    total_d1_state_counter += d1_state_counter
+    total_d2_state_counter += d2_state_counter
+
     print(f"\nSimulation finished.")
     print(f"Simulation time: {time_of_simulation}")
     print(f"Time in use: {time_in_use} ({round(time_in_use_persentage,1)}%)")
     print(f"Time unused: {time_unused} ({round(time_unused_persentage,1)}%)")
     print(f"Overhaul time: {time_overhaul} ({round(time_overhaul_persentage,1)}%)")
     print(f"Costs: {costs}")
+    print(f"Number of failures: {failure_counter}")
+    print(f"Number of initial states: {initial_state_counter}")
+    print(f"Number of D1 states: {d1_state_counter}")
+    print(f"Number of D2 states: {d2_state_counter}")
 
 
 
 # Call the main loop function
-mainLoop()
+sim_num = int(input("Enter the number of simulations: "))
+i = int(input("Enter time:"))
+
+for x in range(sim_num):
+    mainLoop(i)
+
+print("\nAvarage results: ")
+print(f"Time in use: {total_time_in_use/sim_num}")
+print(f"Time unused: {total_time_unused/sim_num}")
+print(f"Overhaul time: {total_time_overhaul/sim_num}")
+print(f"Costs: {total_costs/sim_num}")
+print(f"Number of failures: {total_failure_counter/sim_num}")
+print(f"Number of initial states: {total_initial_state_counter/sim_num}")
+print(f"Number of D1 states: {total_d1_state_counter/sim_num}")
+print(f"Number of D2 states: {total_d2_state_counter/sim_num}")
 
 
 # DATA frames, csv
