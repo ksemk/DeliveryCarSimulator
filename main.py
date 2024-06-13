@@ -28,6 +28,8 @@ total_time_in_use = 0
 total_time_unused = 0
 total_time_overhaul = 0
 total_costs = 0
+total_failure_costs = 0
+total_maintenance_costs = 0
 total_failure_counter = 0
 total_initial_state_counter = 0
 total_d1_state_counter = 0
@@ -64,13 +66,15 @@ def maintenance(state):
 
 
 def mainLoop(i):
-    global total_time_in_use, total_time_unused, total_time_overhaul, total_costs
+    global total_time_in_use, total_time_unused, total_time_overhaul, total_costs, total_failure_costs, total_maintenance_costs
     global total_failure_counter, total_initial_state_counter, total_d1_state_counter, total_d2_state_counter
     time_in_use = 0
     time_unused = 0
     time_overhaul = 0
     time_of_simulation = 0
     costs = 0
+    failure_costs = 0
+    maintenance_costs = 0
     failure_counter = 0
     initial_state_counter = 0
     d1_state_counter = 0
@@ -121,6 +125,7 @@ def mainLoop(i):
                 costs += INSPECTION_COST_D2 * time2i
                 state = FAILURE
         elif state == FAILURE:
+            failure_costs += FAILURE_COST
             failure_counter += 1
             print("\nThe car is broken")
             timeF = random.randint(1, transition_intencityF)
@@ -137,7 +142,9 @@ def mainLoop(i):
     total_initial_state_counter += initial_state_counter
     total_d1_state_counter += d1_state_counter
     total_d2_state_counter += d2_state_counter
-
+    maintenance_costs = costs - failure_costs
+    total_failure_costs += failure_costs
+    total_maintenance_costs += maintenance_costs
 
     time_in_use_persentage = (time_in_use * 100) / time_of_simulation
     time_unused_persentage = (time_unused * 100) / time_of_simulation
@@ -149,7 +156,9 @@ def mainLoop(i):
     print(f"Time in use: {time_in_use} ({round(time_in_use_persentage, 1)}%)")
     print(f"Time unused: {time_unused} ({round(time_unused_persentage, 1)}%)")
     print(f"Overhaul time: {time_overhaul} ({round(time_overhaul_persentage, 1)}%)")
-    print(f"Costs: {costs}")
+    print(f"Total costs: {costs}")
+    print(f"Failure costs: {failure_costs}")
+    print(f"Maintenance costs: {maintenance_costs}")
     print(f"Number of failures: {failure_counter}")
     print(f"Number of initial states: {initial_state_counter}")
     print(f"Number of D1 states: {d1_state_counter}")
@@ -197,6 +206,9 @@ while program_status:
 
             average_time_in_use = total_time_in_use / sim_num
             average_costs = total_costs / sim_num
+            avarage_failure_costs = total_failure_costs / sim_num
+            avarage_maintenance_costs = total_maintenance_costs / sim_num
+
 
             print("\nAvarage results: ")
             print(f"Time in use: {total_time_in_use / sim_num}")
@@ -207,10 +219,12 @@ while program_status:
             print(f"Number of initial states: {total_initial_state_counter / sim_num}")
             print(f"Number of D1 states: {total_d1_state_counter / sim_num}")
             print(f"Number of D2 states: {total_d2_state_counter / sim_num}")
+            print(f"Failure costs: {total_failure_costs / sim_num}")
+            print(f"Maintenance costs: {total_maintenance_costs / sim_num}")
 
             # Write the results to the chosen CSV file
             with open(filename, "a") as file:
-                file.write(f"{average_time_in_use}, {average_costs}\n")
+                file.write(f"{average_time_in_use}, {average_costs}, {avarage_failure_costs}, {avarage_maintenance_costs}\n")
 
             average_time_in_use = 0
             average_costs = 0
@@ -222,6 +236,8 @@ while program_status:
             total_initial_state_counter = 0
             total_d1_state_counter = 0
             total_d2_state_counter = 0
+            total_failure_costs = 0
+            total_maintenance_costs = 0
 
     elif option == 2:
         program_status = False
