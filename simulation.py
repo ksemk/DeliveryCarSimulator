@@ -228,7 +228,7 @@ def mainLoop(i):
 # Main menu
 program_status = True
 while program_status:
-    print("1. Choose simulation number")
+    print("1. Set simulation parameters and run the simulation")
     print("2. Exit")
     option = int(input("Choose an option: "))
     if option == 1:
