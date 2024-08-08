@@ -52,7 +52,7 @@ To assess the financial and operational efficiencies of various maintenance poli
 
 **Costs over Time in Use Graph:**
 
-![Alt text](\simulation_resultscosts_by_policy_plot.png)
+![Alt text](simulation_results/costs_by_policy_plot.png)
 
 The first graph compares the total expenses incurred in maintaining the fleet across different maintenance policies as a function of operational time. This visualization highlights the differences in effective vehicle usage time for the company's needs under various service policies. It effectively illustrates how different maintenance strategies impact the balance between cost and operational availability, providing critical insights into policy performance.
 
