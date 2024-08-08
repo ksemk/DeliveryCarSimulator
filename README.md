@@ -161,5 +161,3 @@ Within the dataset for testing, two policies with varying service intensities ar
 
 ## Acknowledgments
 Special thanks to the project contributors Maksym Zdanovich and [@defnotjustine](https://github.com/defnotjustine) for their significant roles in developing and analyzing the simulation model. Their expertise has been crucial in advancing the project's goals.
-
-This README provides a concise yet comprehensive overview of the project, ensuring that users can easily understand the purpose, set up, and utilize the simulation for their analyses or educational purposes.
