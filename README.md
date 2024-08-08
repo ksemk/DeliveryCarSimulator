@@ -18,7 +18,7 @@ This project utilizes a Python-based simulation to generate datasets for various
 
 ## Simulation
 
-![Alt text](DeliveryCarSimulator\simulation_markov.png)
+![Alt text](simulation_markov.png)
 
 The simulation implemented in this project is based on a Markov chain, comprising four states that depict different stages in the lifecycle of a vehicle:
 
