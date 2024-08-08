@@ -10,6 +10,7 @@ As part of this educational project on *Reliability of Digital Systems* at ***Wr
 - [Visualization](#visualization)
 - [Getting Started](#getting-started)
 - [Acknowledgments](#acknowledgments)
+- [Contacts](#contacts)
 
 ## Project Overview
 
