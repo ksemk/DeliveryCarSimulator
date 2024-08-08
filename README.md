@@ -161,3 +161,13 @@ Within the dataset for testing, two policies with varying service intensities ar
 
 ## Acknowledgments
 Special thanks to the project contributors [@makszdanowicz](https://github.com/makszdanowicz) and [@defnotjustine](https://github.com/defnotjustine) for their significant roles in developing and analyzing the simulation model. Their expertise has been crucial in advancing the project's goals.
+
+## Contacts
+
+For any inquiries, support requests, or if you're interested in collaborating, please don't hesitate to reach out:
+
+- **Email**: [kyrylo.semenchenko@gmail.com](mailto:kyrylo.semenchenko@gmail.com)
+- **GitHub**: [@ksemk](https://github.com/ksemk)
+- **LinkedIn**: [Connect with me on LinkedIn](https://www.linkedin.com/in/kyrylo-semenchenko/)
+
+I look forward to hearing from you!
