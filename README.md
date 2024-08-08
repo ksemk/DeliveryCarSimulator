@@ -11,6 +11,7 @@ As part of this educational project on *Reliability of Digital Systems* at ***Wr
 - [Getting Started](#getting-started)
 - [Acknowledgments](#acknowledgments)
 - [Contacts](#contacts)
+- [License](#license)
 
 ## Project Overview
 
@@ -178,3 +179,8 @@ For any inquiries, support requests, or if you're interested in collaborating, p
 - **LinkedIn**: [Connect with me on LinkedIn](https://www.linkedin.com/in/kyrylo-semenchenko/)
 
 I look forward to hearing from you!
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
