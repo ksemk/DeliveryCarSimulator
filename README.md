@@ -1,6 +1,6 @@
 # Evaluating Cost Efficiency of Various Maintenance Strategies for Fleet Management
 
-As part of this educational project on *Reliability of Digital Systems* at ***Wroclaw University of Science and Technology***, under the supervision of ***Dr. hab. Henryk Maciejewski***, our team, with me as the leader, focused on generating a dataset that simulates the lifecycle of a vehicle within a courier company's fleet. Our objective was to test various vehicle maintenance policies and to identify the most financially effective approach in selecting these policies.
+As part of this educational project on *Reliability of Digital Systems* at ***Wroclaw University of Science and Technology***, under the supervision of [***Dr. hab. Henryk Maciejewski***](https://wit.pwr.edu.pl/wydzial/struktura-organizacyjna/pracownicy/henryk-maciejewski), our team, with me as the leader, focused on generating a dataset that simulates the lifecycle of a vehicle within a courier company's fleet. Our objective was to test various vehicle maintenance policies and to identify the most financially effective approach in selecting these policies.
 
 ## Table of contents
 
