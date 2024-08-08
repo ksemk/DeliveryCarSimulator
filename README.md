@@ -58,7 +58,7 @@ The first graph compares the total expenses incurred in maintaining the fleet ac
 
 **Failure Costs vs. Maintenance Costs:**
 
-![Alt text](simulation_results\failure_vs_maintenance_costs_plot.png)
+![Alt text](DeliveryCarSimulator\simulation_results\failure_vs_maintenance_costs_plot.png)
 
 The second graph displays the relationship between the costs of vehicle maintenance and the costs of vehicle replacement. This visualization allows for an analysis of the overall cost-effectiveness of maintaining vehicles, assessing whether regular maintenance justifies its cost by potentially extending the vehicle's operational lifespan. It also facilitates a comparison of the financial efficiency of different maintenance policies in the context of prolonging the lifecycle of the vehicles.
 
