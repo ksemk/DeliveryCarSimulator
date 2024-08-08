@@ -160,4 +160,4 @@ This configuration suggests higher service decision probabilities for both state
 Within the dataset for testing, two policies with varying service intensities are provided, along with a third control policy. In the control policy, no maintenance is performed unless there is a critical breakdown, at which point the vehicle is replaced. This setup allows for a comprehensive assessment of the impacts and efficiencies of active versus minimal maintenance interventions on vehicle operability and lifecycle.
 
 ## Acknowledgments
-Special thanks to the project contributors Maksym Zdanovich and [@defnotjustine](https://github.com/defnotjustine) for their significant roles in developing and analyzing the simulation model. Their expertise has been crucial in advancing the project's goals.
+Special thanks to the project contributors [@makszdanowicz](https://github.com/makszdanowicz) and [@defnotjustine](https://github.com/defnotjustine) for their significant roles in developing and analyzing the simulation model. Their expertise has been crucial in advancing the project's goals.
