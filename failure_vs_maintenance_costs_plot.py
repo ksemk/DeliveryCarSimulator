@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import os
 
-
+output_dir = 'DeliveryCarSimulator\simulation_results'
 def read_and_plot(csv_files, labels):
     # Validate inputs
     if not csv_files or not labels:
@@ -44,7 +44,11 @@ def read_and_plot(csv_files, labels):
     plt.ylabel('Failure Costs, [PLN]')
     plt.grid(True)
     plt.legend(title='Policy', title_fontsize='13', fontsize='11')
-    plt.show()
+
+# Save the plot
+    output_file = os.path.join(output_dir, 'failure_vs_maintenance_costs_plot.png')
+    plt.savefig(output_file)
+    plt.close()
 
 
 # List of CSV files and their corresponding labels

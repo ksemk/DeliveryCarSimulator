@@ -3,6 +3,8 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 import os
 
+output_dir = 'DeliveryCarSimulator\simulation_results'
+
 def create_combined_graph(csv_files, labels):
     # Validate inputs
     if not csv_files or not labels:
@@ -51,8 +53,10 @@ def create_combined_graph(csv_files, labels):
     # Enhance legend
     plt.legend(title='Policy', title_fontsize='13', fontsize='11')
 
-    # Display the plot
-    plt.show()
+# Save the plot
+    output_file = os.path.join(output_dir, 'costs_by_policy_plot.png')
+    plt.savefig(output_file)
+    plt.close()
 
 # List of CSV files and their corresponding labels
 csv_files = ['DeliveryCarSimulator\\simulation_results\\policy1_results.csv', 'DeliveryCarSimulator\\simulation_results\\policy2_results.csv', 'DeliveryCarSimulator\\simulation_results\\policy3_results.csv']
