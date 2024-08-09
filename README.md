@@ -143,7 +143,7 @@ This configuration will initiate 100 simulations. The first simulation will run 
 
 ### Maintenance Policies Configuration 
 
-The current configuration of the program allows for the comparison of three different maintenance policies. Each policy is defined within a text file located in the `DeliveryCarSimulator\maintenance_policies` directory. These files contain six lines of integer values, configuring various aspects of the maintenance decision-making process:
+The current configuration of the program allows for the comparison of three different maintenance policies. Each policy is defined within a text file located in the `data\maintenance_policies` directory. These files contain six lines of integer values, configuring various aspects of the maintenance decision-making process:
 
 1. **Service Decision Probability for State D1**: The first line sets the parameter influencing the probability of deciding to conduct service when a vehicle is in state D1. A higher number increases the likelihood of service intervention (values range from 1 to 100).
 2. **Service Decision Probability for State D2**: Similarly, the second line sets the probability for state D2 under the same conditions.
