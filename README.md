@@ -98,14 +98,14 @@ This step is crucial as all subsequent commands need to be run from within this 
 **Step 3: Download required libraries:**
 
    ```
-   pip install -r requirements.txt
+   pip install -r environment/requirements.txt
    ```
 **Step 4: Launch the Simulation**
 
 With the environment set up and dependencies installed, you’re now ready to run the simulation:
 
    ```
-   python simulation.py
+   python src/simulation.py
    ```
 
 ### Menu Options
