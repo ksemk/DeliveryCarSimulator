@@ -24,11 +24,11 @@ This project utilizes a Python-based simulation to generate datasets for various
 The simulation implemented in this project is based on a Markov chain, comprising four states that depict different stages in the lifecycle of a vehicle:
 
 - **D0 (Degradation level 0)**: The vehicle is new, operating in optimal condition.
-- **D1 (Degradation level 1)**: Shows minor signs of wear; inspection is required.
-- **D2 (Degradation level 2)**: Significantly worn; inspection is required.
+- **D1 (Degradation level 1)**: Shows minor signs of wear; inspection **I1** is required.
+- **D2 (Degradation level 2)**: Significantly worn; inspection **I2** is required.
 - **F (Failure)**: The vehicle is inoperable and needs replacement.
 
-Transition times between these states are generated randomly, constrained by coefficients specified in the configuration file. Decisions regarding the necessity of repairs during inspections, the duration of inspections, and the length of maintenance interventions are generated in a similar stochastic manner. Following a state transition, corresponding actions are taken based on the new state's requirements — for instance, a vehicle in state D0 continues to operate without need for immediate intervention.
+After each inspection, a decision is made on whether to perform maintenance (**M1** or **M2**). If maintenance is carried out, the vehicle's condition improves; otherwise, it deteriorates. Transition times between these states are generated randomly, constrained by coefficients specified in the configuration file. Decisions regarding the necessity of repairs during inspections, the duration of inspections, and the length of maintenance interventions are generated in a similar stochastic manner. Following a state transition, corresponding actions are taken based on the new state's requirements — for instance, a vehicle in state D0 continues to operate without need for immediate intervention.
 
 Costs for each inspection, maintenance session, or vehicle replacement are accounted for as per predefined service charges. Vehicles are not operational during inspections, maintenance, or replacement phases, accurately simulating downtime.
 
