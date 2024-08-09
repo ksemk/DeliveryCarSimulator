@@ -19,7 +19,7 @@ This project utilizes a Python-based simulation to generate datasets for various
 
 ## Simulation
 
-![Alt text](simulation_markov.png)
+![Alt text](docs/simulation_markov.png)
 
 The simulation implemented in this project is based on a Markov chain, comprising four states that depict different stages in the lifecycle of a vehicle:
 
@@ -53,13 +53,13 @@ To assess the financial and operational efficiencies of various maintenance poli
 
 **Costs over Time in Use Graph:**
 
-![Alt text](simulation_results/costs_by_policy_plot.png)
+![Alt text](data/simulation_results/costs_by_policy_plot.png)
 
 The first graph compares the total expenses incurred in maintaining the fleet across different maintenance policies as a function of operational time. This visualization highlights the differences in effective vehicle usage time for the company's needs under various service policies. It effectively illustrates how different maintenance strategies impact the balance between cost and operational availability, providing critical insights into policy performance.
 
 **Failure Costs vs. Maintenance Costs:**
 
-![Alt text](simulation_results/failure_vs_maintenance_costs_plot.png)
+![Alt text](data/simulation_results/failure_vs_maintenance_costs_plot.png)
 
 The second graph displays the relationship between the costs of vehicle maintenance and the costs of vehicle replacement. This visualization allows for an analysis of the overall cost-effectiveness of maintaining vehicles, assessing whether regular maintenance justifies its cost by potentially extending the vehicle's operational lifespan. It also facilitates a comparison of the financial efficiency of different maintenance policies in the context of prolonging the lifecycle of the vehicles.
 
