@@ -270,20 +270,20 @@ while program_status:
 
         # Reading maintenance policy from the file
         if current_policy == 1:
-            filename = "DeliveryCarSimulator\simulation_results\policy1_results.csv"
+            filename = "simulation_results/policy1_results.csv"
             with open(filename, "w") as file:
                 file.write("")  # This clears the content of the file.
-            maintenance_policy = read_file("DeliveryCarSimulator\maintenance_policies\policy1.txt")
+            maintenance_policy = read_file("maintenance_policies/policy1.txt")
         elif current_policy == 2:
-            filename = "DeliveryCarSimulator\simulation_results\policy2_results.csv"
+            filename = "simulation_results/policy2_results.csv"
             with open(filename, "w") as file:
                 file.write("")  # This clears the content of the file.
-            maintenance_policy = read_file("DeliveryCarSimulator\maintenance_policies\policy2.txt")
+            maintenance_policy = read_file("maintenance_policies/policy2.txt")
         elif current_policy == 3:
-            filename = "DeliveryCarSimulator\simulation_results\policy3_results.csv"
+            filename = "simulation_results/policy3_results.csv"
             with open(filename, "w") as file:
                 file.write("")  # This clears the content of the file.
-            maintenance_policy = read_file("DeliveryCarSimulator\maintenance_policies\policy3.txt")
+            maintenance_policy = read_file("maintenance_policies/policy3.txt")
 
         # Saving values of the policies into variables
         decision_probability1 = int(maintenance_policy[0])    # maintenance probability range for state D1
@@ -291,7 +291,7 @@ while program_status:
         maintenance_range1 = int(maintenance_policy[2])       # maintenance time range for state D1
         maintenance_range2 = int(maintenance_policy[3])       # maintenance time range for state D2
         inspection_range1 = int(maintenance_policy[4])        # inspection time range for state D1
-        inspection_range2 = int(maintenance_policy[5])        # maintenance time range for state D2
+        inspection_range2 = int(maintenance_policy[5])        # inspection time range for state D2
 
         # Running the simulation
         for time in range(min_simulation_time, max_simulation_time, leap):
