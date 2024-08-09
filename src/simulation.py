@@ -270,20 +270,20 @@ while program_status:
 
         # Reading maintenance policy from the file
         if current_policy == 1:
-            filename = "simulation_results/policy1_results.csv"
+            filename = "data/simulation_results/policy1_results.csv"
             with open(filename, "w") as file:
                 file.write("")  # This clears the content of the file.
-            maintenance_policy = read_file("maintenance_policies/policy1.txt")
+            maintenance_policy = read_file("data/maintenance_policies/policy1.txt")
         elif current_policy == 2:
-            filename = "simulation_results/policy2_results.csv"
+            filename = "data/simulation_results/policy2_results.csv"
             with open(filename, "w") as file:
                 file.write("")  # This clears the content of the file.
-            maintenance_policy = read_file("maintenance_policies/policy2.txt")
+            maintenance_policy = read_file("data/maintenance_policies/policy2.txt")
         elif current_policy == 3:
-            filename = "simulation_results/policy3_results.csv"
+            filename = "data/simulation_results/policy3_results.csv"
             with open(filename, "w") as file:
                 file.write("")  # This clears the content of the file.
-            maintenance_policy = read_file("maintenance_policies/policy3.txt")
+            maintenance_policy = read_file("data/maintenance_policies/policy3.txt")
 
         # Saving values of the policies into variables
         decision_probability1 = int(maintenance_policy[0])    # maintenance probability range for state D1

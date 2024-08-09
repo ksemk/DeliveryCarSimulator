@@ -3,7 +3,7 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 import os
 
-output_dir = 'simulation_results'
+output_dir = 'data/simulation_results'
 
 def create_combined_graph(csv_files, labels):
     # Validate inputs
@@ -59,7 +59,7 @@ def create_combined_graph(csv_files, labels):
     plt.close()
 
 # List of CSV files and their corresponding labels
-csv_files = ['simulation_results/policy1_results.csv', 'simulation_results/policy2_results.csv', 'simulation_results/policy3_results.csv']
+csv_files = ['data/simulation_results/policy1_results.csv', 'data/simulation_results/policy2_results.csv', 'data/simulation_results/policy3_results.csv']
 labels = ['Maintenance Policy 1', 'Maintenance Policy 2', 'Maintenance Policy 3']
 
 # Call the function to create the plot
