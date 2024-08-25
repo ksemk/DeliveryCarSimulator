@@ -85,7 +85,7 @@ This section guides you through the process of setting up the Delivery Car Simul
 Start by cloning the Delivery Car Simulation repository to your local system. This will create a copy of the latest project source code on your machine. Open your command line interface (CLI) and run the following command:
 
 ```
-   git clone https://github.com/ksemk/DeliveryCarSimulator.git
+git clone https://github.com/ksemk/DeliveryCarSimulator.git
 ```
 **Step 2: Navigate to the Project Directory**
 After cloning the repository, change into the project directory:
