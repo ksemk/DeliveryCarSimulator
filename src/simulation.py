@@ -1,5 +1,5 @@
 import random
-
+import os
 # Introduction
 print("Welcome to Delivery Car Simulation")
 
@@ -38,8 +38,9 @@ total_d2_state_counter = 0          # Number of times the cars was in D2 state
 # File reader function
 def read_file(file_name):
     maintenance_policy = []
+    file_path = os.path.join(os.getcwd(), file_name)
     try:
-        with open(file_name, 'r') as file:
+        with open(file_path, 'r') as file:
             for line in file:
                 maintenance_policy.append(line.strip())
     except FileNotFoundError:
