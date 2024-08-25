@@ -121,6 +121,7 @@ When you start the Delivery Car Simulation, you'll be greeted with the following
 
 After selecting first option from the main menu, follow these steps to configure the simulation:
 
+- ***Choose the policy:*** Choose within different simulation configuration files from 1 to 3.
 - ***Enter the number of simulations:*** This is the number of individual simulation runs you wish to execute. Each run uses a different simulation length based on the range and total points specified.
 - ***Enter the minimum time range of simulation:*** Set the starting simulation length. This value represents the shortest duration for which the simulation will run.
 - ***Enter the maximum time range of simulation:***
@@ -132,6 +133,7 @@ After selecting first option from the main menu, follow these steps to configure
 When you choose option 1 from the main menu, you'll go through the setup process as follows:
 
 ```
+Choose the policy: 2
 Choose an option: 1
 Enter the number of simulations: 100
 Enter the minimum time range of simulation: 100
@@ -139,7 +141,7 @@ Enter the maximum time range of simulation: 200
 Enter the number of points for the chart: 100
 ```
 
-This configuration will initiate 100 simulations. The first simulation will run for a length of 100 units, the second for 101 units, continuing in this pattern until the 100th simulation, which runs for 200 units. Each simulation length is determined by the minimum range, maximum range, and the total number of points, ensuring that each run increments evenly across the specified range.
+This setup will initiate 100 simulations of the second simulation config. The first simulation will run for a length of 100 units, the second for 101 units, continuing in this pattern until the 100th simulation, which runs for 200 units. Each simulation length is determined by the minimum range, maximum range, and the total number of points, ensuring that each run increments evenly across the specified range.
 
 ### Maintenance Policies Configuration 
 
